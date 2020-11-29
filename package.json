@@ -1,0 +1,20 @@
+{
+  "name": "supertest-mocha-example",
+  "version": "1.0.0",
+  "description": "API test automation using supertest & mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha '**/*.spec.js'",
+    "start": "npm src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^7.1.1",
+    "nock": "^12.0.3",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {}
+}
