@@ -3,22 +3,28 @@ const request = require('supertest');
 const expect = require('chai').expect;
 
 describe('api tests: movies api', () => {
+
     let movieId, movieName;
 
     it('should return all movies', () => {
         request(app)
             .get('/api/movies')
             .end((err, res) => {
+                expect(res.statusCode).to.be.equal(200);
                 expect(res.body.items[0].name).to.be.equal("The Wizard of Oz");
                 movieId = res.body.items[0].id;
             })
     });
 
-    it('should return a movie by specified id', (done) => {
+    it('should return a movie by specified id', () => {
         request(app)
             .get(`/api/movies/${movieId}`)
-            .expect(200, {id: '1', name: 'The Wizard of Oz'});
-        done();
+            .retry(1)
+            .end((err, res) => {
+                expect(res.statusCode).to.be.equal(200);
+                expect(res.body.name).to.be.equal("The Wizard of Oz");
+                expect(res.body.id).to.be.equal(1);
+            })
     });
 
     it('should add a new movie', () => {
@@ -42,17 +48,11 @@ describe('api tests: movies api', () => {
             })
             .set('Accept', 'application/json')
             .end((err, res) => {
+                expect(res.statusCode).to.be.equal(200);
                 movieName = res.body.name;
                 console.log('----->' + movieName);
                 expect(res.body.name).to.be.equal('Goodfellas (1990)');
             })
-    });
-
-    it('should delete a movie', (done) => {
-        request(app)
-            .delete('/api/movies/1')
-            .expect(204);
-        done();
     });
 
 });

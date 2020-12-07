@@ -1,27 +1,39 @@
 # API Test Automation | Supertest | Mocha
 
 ## Description
-supertest + mocha api automation example
+supertest + mocha api test automation example
 
 ## Installation
-
 ```bash
 $ npm install
 ```
 
-## Run Tests
-
+## Run tests
 ```bash
 $ npm test
 ```
 
-## Start test App
+## Run tests with mochawesome reporter
+```bash
+$ npm run test:awesome
+```
 
+## Start express test API
+
+```bash
+$ npm start
+```
+or 
 ```bash
 $ node src/app.js
 ```
 
-# Invoke from browser or REST client
+# Invoke express test API from a browser or REST client
 ```
 http://localhost:8000/api/movies
+```
+
+# Public API 
+```
+https://reqres.in
 ```

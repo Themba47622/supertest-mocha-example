@@ -1,5 +1,4 @@
 const express = require('express');
-
 const app = express();
 
 app.use(express.json())
@@ -98,10 +97,6 @@ app.post('/api/movies', (req, res) => {
             }
         ]
     });
-});
-
-app.delete('/api/movies/:id', (req, res) => {
-    res.status(204);
 });
 
 module.exports = app;
